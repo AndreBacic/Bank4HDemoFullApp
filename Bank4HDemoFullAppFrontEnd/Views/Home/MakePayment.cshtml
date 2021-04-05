@@ -1,0 +1,14 @@
+﻿@model bool
+@{
+    ViewData["Title"] = "Payment final";
+}
+
+@if (Model == true)
+{
+    <h1>Payment successfull.</h1>
+} else
+{
+    <h1>Payment failed.</h1>
+}
+<a asp-area="" asp-controller="Home" asp-action="Account"><button type="button" class="btn btn-primary">Back to account</button></a>
+
