@@ -26,7 +26,6 @@ namespace Bank4HDemoFullAppFrontEnd.Controllers
 
         public IActionResult Index()
         {
-            payments = _dataAccessor.GetPayments();
             return View();
         }
 
@@ -36,7 +35,8 @@ namespace Bank4HDemoFullAppFrontEnd.Controllers
         /// <returns>The completed page</returns>
         public IActionResult Account()
         {
-            return View();
+            payments = _dataAccessor.GetPayments();
+            return View(payments);
         }
         
         /// <summary>

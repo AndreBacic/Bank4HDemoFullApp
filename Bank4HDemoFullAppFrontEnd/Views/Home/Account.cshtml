@@ -1,6 +1,14 @@
-﻿@{
+﻿@using Bank4HDemoLibrary;
+@model List<PaymentModel>
+@{
     ViewData["Title"] = "User Account";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>GIVE MONEY</p>
+<p>Account</p>
+
+@foreach (PaymentModel payment in Model)
+{
+    <h3>@payment.Name</h3>
+    <p>$@payment.Amount , Due: @payment.DateDue , Paid: @payment.DatePaid</p>
+}
