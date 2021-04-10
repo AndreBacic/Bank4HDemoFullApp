@@ -6,5 +6,6 @@
 
 <h1>Payment: @Model.Name</h1>
 <h3>Amount Due: $@Model.Amount</h3>
-<p>Date Due: @Model.DateDue</p>
+<p>Date Due: @Convert.ToDateTime(Model.DateDue).Date.ToString("d")</p>
+<a asp-action="MakePayment" asp-route-id="@Model.Id">Make Final Payment</a>
 

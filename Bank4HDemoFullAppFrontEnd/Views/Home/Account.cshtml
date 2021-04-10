@@ -1,14 +1,25 @@
 ﻿@using Bank4HDemoLibrary;
-@model List<PaymentModel>
+@model AccountViewModel
 @{
     ViewData["Title"] = "User Account";
 }
-<h1>@ViewData["Title"]</h1>
+<h1>Welcome, @Model.User.Name</h1>
 
-<p>Account</p>
+<h2>Info for card #@Model.User.CreditCardNumber</h2>
+<h3>Balance: $@Model.User.BankBalance</h3>
 
-@foreach (PaymentModel payment in Model)
+<h3>Unpaid Bills:</h3>
+@foreach (PaymentModel payment in Model.UnpaidPayments)
 {
-    <h3>@payment.Name</h3>
-    <p>$@payment.Amount , Due: @payment.DateDue , Paid: @payment.DatePaid</p>
+    <div class="text-danger">
+      <h4>@payment.Name</h4>
+      <p>$@payment.Amount, Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), <a asp-action="CompletePayment" asp-route-id="@payment.Id">Make Payment</a></p>
+    </div>
+}
+
+<h3>Previous Payments:</h3>
+@foreach (PaymentModel payment in Model.PaidPayments)
+{
+    <h5>@payment.Name</h5>
+    <p>$@payment.Amount, Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), Paid: @Convert.ToDateTime(payment.DatePaid).Date.ToString("d")</p>
 }

@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 * TODO - make seperate front end
 * TODO - make attached front end
 * TODO - make console back-end data accessor
-* TODO - make deposit class
 */
 /// <summary>
 /// Web development demo application for my 2021 4H presentation.

@@ -35,10 +35,36 @@ namespace Bank4HDemoFullAppFrontEnd.Controllers
         /// <returns>The completed page</returns>
         public IActionResult Account()
         {
+            AccountViewModel accountView = new AccountViewModel();
+            accountView.User = this.user;
+
             payments = _dataAccessor.GetPayments();
-            return View(payments);
+            foreach (PaymentModel p in payments)
+            {
+                if (p.DatePaid != null && p.DatePaid != DateTime.MinValue)
+                {
+                    accountView.PaidPayments.Add(p);
+                }
+                else
+                {
+                    accountView.UnpaidPayments.Add(p);
+                }
+            }
+
+            return View(accountView);
         }
-        
+
+        /// <summary>
+        /// Page that shows confirmation of payment and sends payment Id for payment to be made
+        /// </summary>
+        /// <param name="id">Id of payment</param>
+        /// <returns>View of page</returns>
+        public IActionResult CompletePayment(int id)
+        {
+            PaymentModel payment = _dataAccessor.GetPayments().Where(x => x.Id == id).First();
+            return View(payment);
+        }
+
         /// <summary>
         /// Page that displays information about payment before user agrees to pay
         /// </summary>
@@ -62,16 +88,6 @@ namespace Bank4HDemoFullAppFrontEnd.Controllers
                 }
             }
             return View(false); // view has redirect to account button
-        }
-
-        /// <summary>
-        /// Page that shows confirmation of payment and sends payment Id for payment to be made
-        /// </summary>
-        /// <param name="id">Id of payment</param>
-        /// <returns>View of page</returns>
-        public IActionResult CompletePayment(int id)
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
