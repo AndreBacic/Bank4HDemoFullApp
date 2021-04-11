@@ -29,15 +29,32 @@ namespace Bank4HDemoLibrary
         public SQLDataAccessor(IConfiguration configuration)
         {
             ConnectionString = configuration.GetConnectionString("Bank4HDemo");
-        }
-        public void InsertPayment(PaymentModel payment)
-        {
-            // TODO - finish this method
+
+            DemoDBReset();
         }
 
-        public void UpdatePayment(PaymentModel payment)
+        /// <summary>
+        /// Runs a stored procedure that resets the demo db. This method is called by the constructor.
+        /// </summary>
+        public void DemoDBReset()
         {
-            // TODO - finish this method
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                connection.Execute("dbo.spPayments_DemoReset", commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void UpdatePayment(PaymentModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(ConnectionString))
+            {
+                var p = new DynamicParameters();
+
+                p.Add("@Id", model.Id);
+                p.Add("@datePaid", model.DatePaid);
+
+                connection.Execute("dbo.spPayments_Update", p, commandType: CommandType.StoredProcedure);        
+            }
         }
 
         public List<PaymentModel> GetPayments()
