@@ -26,9 +26,25 @@ namespace Bank4HDemoLibrary
     public class SQLDataAccessor
     {
         private string ConnectionString;
+
+        /// <summary>
+        /// Sets up the data accessor
+        /// </summary>
+        /// <param name="configuration">Parameter to be supplied by dependency injection</param>
         public SQLDataAccessor(IConfiguration configuration)
         {
             ConnectionString = configuration.GetConnectionString("Bank4HDemo");
+
+            DemoDBReset();
+        }
+
+        /// <summary>
+        /// Sets up the data accessor
+        /// </summary>
+        /// <param name="connectionString">DB connection string must be supplied manually in this overload</param>
+        public SQLDataAccessor(string connectionString)
+        {
+            ConnectionString = connectionString;
 
             DemoDBReset();
         }
