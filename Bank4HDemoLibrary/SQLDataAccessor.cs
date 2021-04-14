@@ -9,8 +9,6 @@ using Microsoft.Extensions.Configuration;
 * NOTES:
 * 
 * TODO - make seperate front end
-* TODO - make attached front end
-* TODO - make console back-end data accessor
 */
 /// <summary>
 /// Web development demo application for my 2021 4H presentation.
