@@ -1,4 +1,5 @@
-﻿@using Bank4HDemoLibrary;
+﻿@using System.Globalization;
+@using Bank4HDemoLibrary;
 @model AccountViewModel
 @{
     ViewData["Title"] = "User Account";
@@ -6,14 +7,14 @@
 <h1>Welcome, @Model.User.Name</h1>
 
 <h2>Info for card #@Model.User.CreditCardNumber</h2>
-<h3>Balance: $@Model.User.BankBalance</h3>
+<h3>Balance: $@Model.User.BankBalance.ToString("N2", CultureInfo.InvariantCulture)</h3>
 
 <h3>Unpaid Bills:</h3>
 @foreach (PaymentModel payment in Model.UnpaidPayments)
 {
     <div class="text-danger">
       <h4>@payment.Name</h4>
-      <p>$@payment.Amount, Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), <a asp-action="CompletePayment" asp-route-id="@payment.Id">Make Payment</a></p>
+      <p>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), <a asp-action="CompletePayment" asp-route-id="@payment.Id">Make Payment</a></p>
     </div>
 }
 
@@ -21,5 +22,5 @@
 @foreach (PaymentModel payment in Model.PaidPayments)
 {
     <h5>@payment.Name</h5>
-    <p>$@payment.Amount, Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), Paid: @Convert.ToDateTime(payment.DatePaid).Date.ToString("d")</p>
+    <p>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), Paid: @Convert.ToDateTime(payment.DatePaid).Date.ToString("d")</p>
 }

@@ -1,11 +1,12 @@
-﻿@using Bank4HDemoLibrary
+﻿@using System.Globalization;
+@using Bank4HDemoLibrary
 @model PaymentModel
 @{
     ViewData["Title"] = "View Payment";
 }
 
 <h1>Payment: @Model.Name</h1>
-<h3>Amount Due: $@Model.Amount</h3>
+<h3>Amount Due: $@Model.Amount.ToString("N2", CultureInfo.InvariantCulture)</h3>
 <p>Date Due: @Convert.ToDateTime(Model.DateDue).Date.ToString("d")</p>
 <a asp-action="MakePayment" asp-route-id="@Model.Id">Make Final Payment</a>
 
