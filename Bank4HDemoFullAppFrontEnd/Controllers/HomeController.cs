@@ -35,8 +35,10 @@ namespace Bank4HDemoFullAppFrontEnd.Controllers
         /// <returns>The completed page</returns>
         public IActionResult Account()
         {
-            AccountViewModel accountView = new AccountViewModel();
-            accountView.User = this.user;
+            AccountViewModel accountView = new AccountViewModel
+            {
+                User = this.user
+            };
 
             payments = _dataAccessor.GetPayments();
             foreach (PaymentModel p in payments)

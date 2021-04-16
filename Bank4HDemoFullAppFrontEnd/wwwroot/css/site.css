@@ -69,3 +69,10 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*--------------------------------------------------
+    Andre's styles
+*/
+.background {
+    background-image: url("https://tse1.mm.bing.net/th?id=OIP.XbNf1Anb3QLEYkEjEVlaxQHaES&pid=Api&P=0&w=309&h=180") !important;
+}
