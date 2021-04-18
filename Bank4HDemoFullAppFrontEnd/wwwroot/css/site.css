@@ -54,13 +54,17 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    height: 100%;
+    background-image: url("Beach.jpg") !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
 .footer {
   position: absolute;
@@ -73,6 +77,17 @@ body {
 /*--------------------------------------------------
     Andre's styles
 */
+.small-nav {
+    margin-bottom: 0 !important;
+}
+.fill-y-direction {
+    margin-bottom: 0 !important;
+}
 .background {
-    background-image: url("https://tse1.mm.bing.net/th?id=OIP.XbNf1Anb3QLEYkEjEVlaxQHaES&pid=Api&P=0&w=309&h=180") !important;
+    background-color: #fff !important;
+}
+.some-padding {
+    padding-top: 12px;
+    padding-right: 15px;
+    padding-left: 15px;
 }

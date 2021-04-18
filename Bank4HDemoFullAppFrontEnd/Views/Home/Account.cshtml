@@ -4,23 +4,42 @@
 @{
     ViewData["Title"] = "User Account";
 }
-<h1>Welcome, @Model.User.Name</h1>
+<div  class="display-4">
+    <h2>Welcome, @Model.User.Name</h2>
 
-<h2>Info for card #@Model.User.CreditCardNumber</h2>
-<h3>Balance: $@Model.User.BankBalance.ToString("N2", CultureInfo.InvariantCulture)</h3>
+    <h4>Info for card <p class="text-info">#@Model.User.CreditCardNumber</p></h4>
+    <h4>Balance: <p class="text-info">$@Model.User.BankBalance.ToString("N2", CultureInfo.InvariantCulture)</p><h6>
+</div>
 
-<h3>Unpaid Bills:</h3>
-@foreach (PaymentModel payment in Model.UnpaidPayments)
-{
-    <div class="text-danger">
-      <h4>@payment.Name</h4>
-      <p>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), <a asp-action="CompletePayment" asp-route-id="@payment.Id">Make Payment</a></p>
-    </div>
-}
+<table class="table table-danger table-hover">
+    <thead>
+        <tr><p class="display-3">Unpaid Bills:</p></tr>
+    </thead>
+    
+    <tbody>
+        @foreach (PaymentModel payment in Model.UnpaidPayments)
+        {
+            <tr class="">
+                <td>@payment.Name</td>
+                <td>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), <a asp-action="CompletePayment" asp-route-id="@payment.Id">Make Payment</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-<h3>Previous Payments:</h3>
-@foreach (PaymentModel payment in Model.PaidPayments)
-{
-    <h5>@payment.Name</h5>
-    <p>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), Paid: @Convert.ToDateTime(payment.DatePaid).Date.ToString("d")</p>
-}
+<table class="table table-info table-hover">
+    <thead class="display-2">
+        <tr><p class="display-4">Previous Bills:</p></tr>
+    </thead>
+
+    <tbody>
+        @foreach (PaymentModel payment in Model.PaidPayments)
+        {
+        <tr>
+            <td>@payment.Name</td>
+            <td>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), Paid: @Convert.ToDateTime(payment.DatePaid).Date.ToString("d")</td>
+        </tr>
+        }
+    </tbody>
+</table>
+

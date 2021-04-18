@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info border-bottom box-shadow small-nav mb-3">
             <div class="container">
                 <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index"><strong>MyBank</strong></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -32,13 +32,15 @@
             </div>
         </nav>
     </header>
-    <div class="container background">
-        <main role="main" class="pb-3">
-            @RenderBody()
+    <div class="fill-y-direction container">
+        <main role="main" class="pb-3 background">
+            <div class="some-padding">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted background">
         <div class="container">
             &copy; 2021 - MyBank - <a asp-area="" asp-controller="Home" asp-action="Error">Policy</a>
         </div>
