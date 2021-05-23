@@ -26,7 +26,7 @@ namespace Bank4HDemoFullAppFrontEnd.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Account");
         }
 
         /// <summary>
