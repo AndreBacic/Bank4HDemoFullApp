@@ -8,7 +8,7 @@
     <h2>Welcome, @Model.User.Name</h2>
 
     <h4>Info for card <p class="text-info">#@Model.User.CreditCardNumber</p></h4>
-    <h4>Balance: <p class="text-info">$@Model.User.BankBalance.ToString("N2", CultureInfo.InvariantCulture)</p><h6>
+    <h4>Balance: <p class="darker-text-info">$@Model.User.BankBalance.ToString("N2", CultureInfo.InvariantCulture)</p></h4>
 </div>
 
 <table class="table table-danger table-hover">
@@ -20,8 +20,8 @@
         @foreach (PaymentModel payment in Model.UnpaidPayments)
         {
             <tr class="">
-                <td>@payment.Name</td>
-                <td>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), <a asp-action="CompletePayment" asp-route-id="@payment.Id">Make Payment</a></td>
+                <td><strong>@payment.Name</strong></td>
+                <td><strong>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), <a asp-action="CompletePayment" asp-route-id="@payment.Id">Make Payment</a></strong></td>
             </tr>
         }
     </tbody>
@@ -36,8 +36,8 @@
         @foreach (PaymentModel payment in Model.PaidPayments)
         {
         <tr>
-            <td>@payment.Name</td>
-            <td>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), Paid: @Convert.ToDateTime(payment.DatePaid).Date.ToString("d")</td>
+            <td><strong>@payment.Name</strong></td>
+            <td><strong>$@payment.Amount.ToString("N2", CultureInfo.InvariantCulture), Due: @Convert.ToDateTime(payment.DateDue).Date.ToString("d"), Paid: @Convert.ToDateTime(payment.DatePaid).Date.ToString("d")</strong></td>
         </tr>
         }
     </tbody>
